@@ -19,3 +19,17 @@
 td.matrix, th.matrix{
   border: 0.1px ridge gray;
 }
+
+#modal{
+  background: #fff;
+  width: 200px;
+  padding: 20px;
+  position:fixed;/* 階層を上にする */
+  height:40%;/* モーダルの高さ */
+  top:50%;/* bodyの上から50%分ずらす */
+  left:50%;/* bodyの左から50%分ずらす */
+  transform:translate(-50%,-50%);/* 指定した位置から真ん中にずらす */
+  overflow-y:scroll;
+  background-color: aquamarine;
+  
+}

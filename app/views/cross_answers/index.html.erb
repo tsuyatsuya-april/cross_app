@@ -29,8 +29,10 @@
               </div>
               <% if @cross_answers.where(lesson_id: lesson.id, student_id: student.id).present? %>
                 <% cross_answer = @cross_answers.where(lesson_id: lesson.id, student_id: student.id) %>
-                <%= cross_answer.writing %>
-                <%= cross_answer.mark %>
+                  <% cross_answer.each do |c| %>
+                    <%= c.writing %>
+                    <%= c.mark %>
+                  <% end %>
               <% end %>
             </td>
           <% end %>
@@ -39,3 +41,24 @@
     </tbody>
   </table>
 </div>
+
+<div id="mask" class="hidden">
+  <section id="modal" class="hidden">
+    <div id="close">
+      閉じる
+    </div>
+    <%= form_with model: @cross_answer, local: true do |f| %>
+      <%= f.text_field :lesson_id, class:"hidden",id:"lesson_id-input"%>
+      <%= f.text_field :student_id, class:"hidden", id:"student_id-input" %>
+      <div>
+        <label>筆記点数</label> 
+        <%= f.text_field :writing %>
+      </div>
+      <div>
+        <label>マーク点数</label>
+        <%= f.text_field :mark %>
+      </div>
+      <%= f.submit %>
+    <% end %>
+  </section>
+</div> 

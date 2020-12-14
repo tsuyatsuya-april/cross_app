@@ -18,6 +18,6 @@ class CrossAnswersController < ApplicationController
 
   private
   def cross_answer_params
-    params.require(:cross_answer).permit(:lesson_id, :student_id, :writting, :mark)
+    params.require(:cross_answer).permit(:lesson_id, :student_id, :writing, :mark)
   end
 end
