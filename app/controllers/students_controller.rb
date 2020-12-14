@@ -4,10 +4,10 @@ class StudentsController < ApplicationController
   def new
     @student = Student.new
   end
-  
+
   def create
     @student = Student.new(student_params)
-    if @sutdent.save
+    if @student.save
       redirect_to root_path
     else
       render :new
@@ -16,6 +16,6 @@ class StudentsController < ApplicationController
 
   private
   def student_params
-    params.require(:sutdent).permit(:name)
+    params.require(:student).permit(:name)
   end
 end

@@ -13,3 +13,9 @@
  *= require_tree .
  *= require_self
  */
+.hidden{
+  display: none;
+}
+td.matrix, th.matrix{
+  border: 0.1px ridge gray;
+}

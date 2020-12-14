@@ -1,3 +1,41 @@
 <%= link_to "科目登録", new_lesson_path %>
 <%= link_to "生徒登録", new_student_path %>
 
+<div id="cross-matrix">
+  <table class="matrix">
+    <thead>
+      <tr class="matrix">
+        <td class="matrix"></td>
+        <% @lessons.each do |lesson| %>
+          <td class="matrix">
+            <%= lesson.name %>
+          </td>
+        <% end %>
+      </tr>
+    <thead>
+    <tbody>
+      <% @students.each_with_index do |student, i| %>
+        <tr class="matrix">
+          <th class="matrix">
+            <%= student.name %>
+          </th>
+          <% @lessons.each_with_index do |lesson, k| %>
+            <td class="grade-info matrix">
+              <div class="hidden lesson-num">
+                <%= lesson.id%>
+              </div>
+              <div class="hidden student-num">
+                <%= student.id %>
+              </div>
+              <% if @cross_answers.where(lesson_id: lesson.id, student_id: student.id).present? %>
+                <% cross_answer = @cross_answers.where(lesson_id: lesson.id, student_id: student.id) %>
+                <%= cross_answer.writing %>
+                <%= cross_answer.mark %>
+              <% end %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -1,5 +1,5 @@
 <div id="new-student">
-  <%= form_with model: @student, local true do |f| %>
+  <%= form_with model: @student, local: true do |f| %>
     <%= f.text_field :name %>
     <%= f.submit %>
   <% end %>

@@ -2,6 +2,7 @@ class CrossAnswersController < ApplicationController
   def index
     @lessons = Lesson.all
     @students = Student.all
+    @cross_answers = CrossAnswer.all
     @cross_answer = CrossAnswer.new
   end
   def new
