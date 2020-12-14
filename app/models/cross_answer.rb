@@ -1,0 +1,2 @@
+class CrossAnswer < ApplicationRecord
+end

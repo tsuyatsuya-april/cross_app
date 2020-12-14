@@ -1,0 +1,7 @@
+<div id="new-lesson">
+  <%= form_with model: @lesson, local true do |f| %>
+    <%= f.text_field :name %>
+    <%= f.submit %>
+  <% end %>
+</div>
+<%= link_to "トップページ", root_path %
