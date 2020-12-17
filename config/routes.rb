@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   resources :members, only: [:new, :create]
   resources :battings do
     collection do
-      post 'search'
+      get 'search'
     end
   end
-
+  
 end

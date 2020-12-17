@@ -1,15 +1,13 @@
 function searchMember() {
   const submit = document.getElementById("form");
   submit.addEventListener("keyup", (e) => {
-    // const formResult = document.getElementById("form");
-    const formValue = Math.floor(submit.value);
+    const formResult = document.getElementById("form");
+    const formData = formResult.value;
+    // const formData = new FormData(formResult);
     const XHR = new XMLHttpRequest();
-    XHR.open("POST", '/battings/search', true);
+    XHR.open("GET", '/battings/search', true);
     XHR.responseType = "json";
-    let sendNumber = JSON.stringify({
-      keyword: formValue
-    });
-    XHR.send();
+    XHR.send(formResult);
     XHR.onload = () =>{
       if (XHR.status != 200) {
         alert(`Error ${XHR.status}: ${XHR.statusText}`);
