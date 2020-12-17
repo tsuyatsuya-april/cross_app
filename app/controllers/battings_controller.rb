@@ -14,8 +14,7 @@ class BattingsController < ApplicationController
   end
 
   def search
-    member = Member.where('uniform_number LIKE(?)', "%#{params[:keyword]}%")
-    
+    member = Member.find_by(uniform_number: params[:keyword])
     render json:{ member: member }
   end
 

@@ -16,14 +16,7 @@
 						</td>
 						<td class="input-form-2">
 							<%= form.hidden_field :member_id, id:"member_id" %>
-              <%= form_with(url: search_battings_path, local: true, method: :get, class: "user", id: "keywords") do |form| %>
-                <%= form.text_field :keyword, class: "kensaku", id: "form" %>
-              <% end %>
-							<%# input-game-uniform-numberはjavascriptにて使用するので編集不可 %>
-							<%# <%= form_with(url:root_path, local: true, method: :get) do |form| %>
-  							<%# <%= form.text_field :keyword, class:"input-game-uniform-number" %>
-							<%# <% end %> 
-							<%# <input type="text" class="input-game-uniform-number"/> %>
+              <input type="text" class="kensaku" id="form" >
 						</td>
 						<td class="input-form-3">
 							<input type="text" class="input-game-grade", id="grade_id"/>
