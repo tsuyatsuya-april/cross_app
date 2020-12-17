@@ -1,0 +1,31 @@
+<%= form_with(model: @members, url: members_path, local: true) do |form| %>
+  <div class="members">
+    <table class="members-new">
+      <tr class="members-new-tr-1">
+        <th class="uniform-number">背番号</th>
+        <th class="grade">学年</th>
+        <th class="first-name">姓</th>
+        <th class="last-name">名</th>
+      </tr>
+      <tr>
+        <td class="uniform-number">
+          <%= form.text_field :uniform_number, class:"input-uniform-number" %>
+        </td>
+        <td class="grade">
+          <%= form.text_field :grade, class:"input-grade" %>
+        </td>
+        <td class="first-name">
+          <%= form.text_field :first_name, class:"input-first-name" %>
+        </td>
+        <td class="last-name">
+          <%= form.text_field :last_name, class:"input-last-name" %>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="btn">
+    <%= form.submit "登録", class:"members-btn" %>
+    <%= link_to '一覧', members_path, class: 'btn-members-index' %>
+  </div>
+<% end %>
+<%= link_to 'TOPに戻る', root_path, class: 'btn-members-index' %>

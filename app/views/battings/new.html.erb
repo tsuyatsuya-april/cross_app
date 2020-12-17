@@ -1,0 +1,44 @@
+<%= form_with(model: @batting, url: battings_path, local: true) do |form| %>
+	
+		<div class="orders">
+			<table class="orders-new">
+				<tr class="orders-new-registration">
+					<th class="game-batting-order">打順</th>
+					<th class="game-uniform-number">背番号</th>
+					<th class="game-grade">学年</th>
+					<th class="game-full-name">名前</th>
+					<th class="game-defensive">守備</th>
+				</tr>
+			
+					<tr class="orders-new-registration">
+						<td class="input-form-1">
+							<%= form.text_field :batting_number, class:"input-game-uniform-number" %>
+						</td>
+						<td class="input-form-2">
+							<%= form.hidden_field :member_id, id:"member_id" %>
+              <%= form_with(url: search_battings_path, local: true, method: :get, class: "user", id: "keywords") do |form| %>
+                <%= form.text_field :keyword, class: "kensaku", id: "form" %>
+              <% end %>
+							<%# input-game-uniform-numberはjavascriptにて使用するので編集不可 %>
+							<%# <%= form_with(url:root_path, local: true, method: :get) do |form| %>
+  							<%# <%= form.text_field :keyword, class:"input-game-uniform-number" %>
+							<%# <% end %> 
+							<%# <input type="text" class="input-game-uniform-number"/> %>
+						</td>
+						<td class="input-form-3">
+							<input type="text" class="input-game-grade", id="grade_id"/>
+						</td>
+						<td class="input-form-4">
+							<input type="text" class="input-game-full-name", id="full-name"/>
+						</td>
+						<td class="input-form-5">
+							<%= form.text_field :position_id %>
+						</td>
+					</tr>
+			</table>
+		</div>
+		<div class="btn">
+			<%= form.submit "登録", class:"btn-games-index" %>
+		</div>
+	<% end %>
+  <%= link_to 'TOPに戻る', root_path, class: 'btn-members-index' %>

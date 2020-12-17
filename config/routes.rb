@@ -4,4 +4,11 @@ Rails.application.routes.draw do
   resources :students, only: [:index, :new, :create]
   resources :lessons, only: [:index, :new, :create]
   resources :cross_answers, only: [:index, :create]
+  resources :members, only: [:new, :create]
+  resources :battings do
+    collection do
+      get 'search'
+    end
+  end
+  
 end
