@@ -30,11 +30,11 @@
                 <%= student.id %>
               </div>
               <% if @cross_answers.where(lesson_id: lesson.id, student_id: student.id).present? %>
-                <% cross_answer = @cross_answers.where(lesson_id: lesson.id, student_id: student.id) %>
-                  <% cross_answer.each do |c| %>
-                    <%= c.writing %>
-                    <%= c.mark %>
-                  <% end %>
+                <% cross_answer = @cross_answers.find_by(lesson_id: lesson.id, student_id: student.id) %>
+                <%= link_to cross_answers_path(lesson_id: cross_answer.lesson_id, student_id: cross_answer.student_id) do %>
+                  <%= cross_answer.writing %>
+                  <%= cross_answer.mark %>
+                <% end %>
               <% end %>
             </td>
           <% end %>
@@ -43,24 +43,49 @@
     </tbody>
   </table>
 </div>
-
-<div id="mask" class="hidden">
-  <section id="modal" class="hidden">
-    <div id="close">
-      閉じる
-    </div>
-    <%= form_with model: @cross_answer, local: true do |f| %>
-      <%= f.text_field :lesson_id, class:"hidden",id:"lesson_id-input"%>
-      <%= f.text_field :student_id, class:"hidden", id:"student_id-input" %>
-      <div>
-        <label>筆記点数</label> 
-        <%= f.text_field :writing %>
+<% unless params[:lesson_id] && params[:student_id] %>
+  <div id="mask" class="hidden">
+    <section id="modal" class="hidden">
+      <div id="close">
+        閉じる
       </div>
-      <div>
-        <label>マーク点数</label>
-        <%= f.text_field :mark %>
-      </div>
-      <%= f.submit %>
-    <% end %>
-  </section>
-</div> 
+      <%= form_with model: @cross_answer, local: true do |f| %>
+        <%= f.text_field :lesson_id, class:"hidden",id:"lesson_id-input"%>
+        <%= f.text_field :student_id, class:"hidden", id:"student_id-input" %>
+        <div>
+          <label>筆記点数</label> 
+          <%= f.text_field :writing %>
+        </div>
+        <div>
+          <label>マーク点数</label>
+          <%= f.text_field :mark %>
+        </div>
+        <%= f.submit %>
+      <% end %>
+    </section>
+  </div>
+<% else %>
+  <div id="edit-mask">
+    <section id="modal">
+      <%= link_to cross_answers_path do %>
+        <div id="edit-close">
+          閉じる
+        </div>
+      <% end %>
+      <%= form_with model: @cross_answer, url:cross_answer_path(@cross_answer.id), local: true do |f| %>
+        <%= f.hidden_field :id %>
+        <%= f.text_field :lesson_id, class:"hidden",id:"lesson_id-input"%>
+        <%= f.text_field :student_id, class:"hidden", id:"student_id-input" %>
+        <div>
+          <label>筆記点数</label> 
+          <%= f.text_field :writing %>
+        </div>
+        <div>
+          <label>マーク点数</label>
+          <%= f.text_field :mark %>
+        </div>
+        <%= f.submit %>
+      <% end %>
+    </section>
+  </div> 
+<% end %>
